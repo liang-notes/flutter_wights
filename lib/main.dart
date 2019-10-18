@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_widgets/animations/animatedPage.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_widgets/widgets/demo_page.dart';
 import 'package:flutter_widgets/widgets/text_page.dart';
 
 void main() {
+  debugPrint = (String message,{int wrapWidth}){};
+  debugPrint = (String message,{int wrapWidth}) => debugPrintSynchronously(message, wrapWidth: wrapWidth);
   runApp(MyApp());
 }
 
