@@ -58,12 +58,22 @@ matrix:
         - mkdir app && mkdir app/Payload
         - cp -r build/ios/iphoneos/Runner.app app/Payload
         - pushd app && zip -r -m app.ipa Payload  && popd
+      # Flutter Module (原生组件)工程发布构建产物输出
+#      before_deploy:
+#        - mkdir .ios/Outputs && mkdir .ios/Outputs/FlutterEngine
+#        - cp FlutterEngine.podspec .ios/Outputs/
+#        - cp -r .ios/Flutter/App.framework/ .ios/Outputs/FlutterEngine/App.framework/
+#        - cp -r .ios/Flutter/engine/Flutter.framework/ .ios/Outputs/FlutterEngine/Flutter.framework/
+#        - pushd .ios/Outputs && zip -r FlutterEngine.zip  ./ && popd
       # 声明部署的策略，即上传 apk 至 github release
       deploy:
         provider: releases
         api_key: ${GITHUB_TOKEN}
         file:
           - app/app.ipa
+        # Flutter Module (原生组件)工程发布构建产物输出
+#        file:
+#          - .ios/Outputs/FlutterEngine.zip
         skip_cleanup: true
         on:
           tags: true
@@ -73,3 +83,6 @@ install:
 cache:
   directories:
     - $HOME/.pub-cache
+
+
+
