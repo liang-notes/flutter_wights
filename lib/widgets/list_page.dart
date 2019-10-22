@@ -25,37 +25,27 @@ class ListPage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Colors.red
-            ),
+            decoration: BoxDecoration(color: Colors.red),
             child: Center(child: Text('0000')),
           ),
           Container(
             margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.blue
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Center(child: Text('1111')),
           ),
           Container(
             margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.blue
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Center(child: Text('2222')),
           ),
           Container(
             margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.blue
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Center(child: Text('1111')),
           ),
           Container(
             margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-                color: Colors.blue
-            ),
+            decoration: BoxDecoration(color: Colors.blue),
             child: Center(child: Text('2222')),
           ),
         ],

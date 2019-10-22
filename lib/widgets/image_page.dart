@@ -1,14 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/expandable_text.dart';
+import 'package:flutter_widgets/custom/expandable_view.dart';
 
 class ImagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String shortText = '不超过最大行数三行的多行文本不超过最大行数三行的多行文本';
+    String longText = '超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本'
+        '超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本';
+
     return Scaffold(
-      appBar: AppBar(title: Text('图片组件'),),
+      appBar: AppBar(
+        title: Text('图片组件'),
+      ),
       body: ListView(
         children: <Widget>[
           _myImage,
-          _myIconsAndIconButton(context)
+          _myIconsAndIconButton(context),
+          Text('短文本测试：'),
+          Container(
+            padding: EdgeInsets.only(left: 30,right: 30),
+            color: Colors.yellow,
+            child: ExpandableText(
+              text: shortText,
+              maxLines: 2,
+              style: TextStyle(fontSize: 15, color: Colors.black),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+          ),
+          Text('长文本测试：'),
+          Container(
+            padding: EdgeInsets.only(left: 30,right: 30),
+            color: Colors.yellow,
+            child: ExpandableText(
+              text: longText,
+              maxLines: 2,
+              style: TextStyle(fontSize: 15, color: Colors.black),
+            ),
+          ),
+
         ],
       ),
     );

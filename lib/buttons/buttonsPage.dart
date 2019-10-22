@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/expandable_view.dart';
 
 class ButtonsPage extends StatefulWidget {
   @override
@@ -8,8 +9,18 @@ class ButtonsPage extends StatefulWidget {
 class _ButtonsPageState extends State<ButtonsPage> {
   var value;
 
+  bool _isExpand;
+
+  @override
+  void initState() {
+    _isExpand = false;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    String longString = '超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本'
+        '超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本超过最大行数三行的多行文本';
     return Scaffold(
       appBar: AppBar(
         title: Text('ExpansionPane'),
@@ -18,10 +29,39 @@ class _ButtonsPageState extends State<ButtonsPage> {
         child: Column(
           children: <Widget>[
             Container(
+              child: FlatButton(
+                child: _isExpand ? Text('收起') : Text('展开'),
+                onPressed: () {
+                  setState(() {
+                    _isExpand = !_isExpand;
+                  });
+                },
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 200,right: 10),
+              child: ExpandableView(
+                expand: _isExpand,
+                onExpandChanged: (value) {
+                  print('aaaaa====$value');
+                },
+                children: <Widget>[
+                  Container(
+                    color: Colors.yellow,
+                    child: Text(longString),
+                  ),
+                  Container(
+                    color: Colors.yellow,
+                    child: Image.network('http://pic4.nipic.com/20090823/3193830_122340002_2.jpg'),
+                  ),
+                ],
+              ),
+            ),
+            Container(
                 child: Text(
-              value ?? '',
-              style: TextStyle(color: Colors.red, fontSize: 30),
-            )),
+                  value ?? '',
+                  style: TextStyle(color: Colors.red, fontSize: 30),
+                )),
             Container(
               margin: EdgeInsets.only(top: 30, left: 20, right: 20),
               child: Wrap(
@@ -53,10 +93,15 @@ class _ButtonsPageState extends State<ButtonsPage> {
                           context: context,
                           position: RelativeRect.fromLTRB(100, 210, 30, 0),
                           items: [
-                            PopupMenuItem(value: 'sss',child: Text('item1'),),
-                            PopupMenuItem(value: 'ssj',child: Text('item2'),)
-                          ]
-                      );
+                            PopupMenuItem(
+                              value: 'sss',
+                              child: Text('item1'),
+                            ),
+                            PopupMenuItem(
+                              value: 'ssj',
+                              child: Text('item2'),
+                            )
+                          ]);
                     },
                     color: Colors.pink,
                     shape: CircleBorder(
@@ -85,11 +130,16 @@ class _ButtonsPageState extends State<ButtonsPage> {
                             context: context,
                             position: RelativeRect.fromLTRB(100, 280, 30, 0),
                             items: [
-                              PopupMenuItem(value: 'sss',child: Text('item1'),),
-                              PopupMenuItem(value: 'ssj',child: Text('item2'),)
-                            ]
-                        );
-                  }),
+                              PopupMenuItem(
+                                value: 'sss',
+                                child: Text('item1'),
+                              ),
+                              PopupMenuItem(
+                                value: 'ssj',
+                                child: Text('item2'),
+                              )
+                            ]);
+                      }),
                   ButtonBar(
                     alignment: MainAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
@@ -101,7 +151,7 @@ class _ButtonsPageState extends State<ButtonsPage> {
                     ],
                   ),
                   _dropdownButton,
-                  _popMenuButton
+                  _popMenuButton,
                 ],
               ),
             ),
@@ -160,31 +210,27 @@ class _ButtonsPageState extends State<ButtonsPage> {
 
   /// PopupMenuButton
   Widget get _popMenuButton {
-    return PopupMenuButton(
-        onSelected: (s) {
-          print(s);
-        },
-        onCanceled: () {
-          print('cancel');
-        },
-        itemBuilder: (BuildContext context) {
-          List<PopupMenuEntry> list = List<PopupMenuEntry>();
-          list.add(PopupMenuItem(
-            child: Text('item1'),
-            value: '111',
-          ));
-          list.add(PopupMenuItem(
-            child: Text('item2'),
-            value: '222',
-          ));
-          list.add(PopupMenuDivider());
-          list.add(CheckedPopupMenuItem(
-            child: Text('item3'),
-            value: '333',
-            checked: true,
-          ));
-          return list;
-        }
-    );
+    return PopupMenuButton(onSelected: (s) {
+      print(s);
+    }, onCanceled: () {
+      print('cancel');
+    }, itemBuilder: (BuildContext context) {
+      List<PopupMenuEntry> list = List<PopupMenuEntry>();
+      list.add(PopupMenuItem(
+        child: Text('item1'),
+        value: '111',
+      ));
+      list.add(PopupMenuItem(
+        child: Text('item2'),
+        value: '222',
+      ));
+      list.add(PopupMenuDivider());
+      list.add(CheckedPopupMenuItem(
+        child: Text('item3'),
+        value: '333',
+        checked: true,
+      ));
+      return list;
+    });
   }
 }
