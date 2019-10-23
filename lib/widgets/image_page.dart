@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/colorful_textField.dart';
 import 'package:flutter_widgets/custom/countdown_button.dart';
 import 'package:flutter_widgets/custom/curve_clipper.dart';
 import 'package:flutter_widgets/custom/expandable_text.dart';
@@ -65,6 +66,17 @@ class ImagePage extends StatelessWidget {
               print('CountdownButton');
             },
             enable: true,
+          ),
+
+          ColorfulTextField(
+            hintText: '手机号',
+            maxLength: 11,
+            legitimateCallback: (){
+              print('legitimateCallback');
+            },
+            illegalCallback: (){
+              print('illegalCallback');
+            },
           ),
         ],
       ),
