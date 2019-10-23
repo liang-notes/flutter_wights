@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/countdown_button.dart';
 import 'package:flutter_widgets/custom/curve_clipper.dart';
 import 'package:flutter_widgets/custom/expandable_text.dart';
 import 'package:flutter_widgets/custom/expandable_view.dart';
@@ -48,8 +49,15 @@ class ImagePage extends StatelessWidget {
               color: Colors.red,
               height: 200,
             ),
-          )
+          ),
 
+          CountdownButton(
+            countdown: 5,
+            onTapCallBack: (){
+              print('CountdownButton');
+            },
+            enable: true,
+          ),
         ],
       ),
     );
