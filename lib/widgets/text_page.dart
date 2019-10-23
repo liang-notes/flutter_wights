@@ -1,6 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TextPage extends StatelessWidget {
+class TextPage extends StatefulWidget {
+  @override
+  _TextPageState createState() => _TextPageState();
+}
+
+class _TextPageState extends State<TextPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

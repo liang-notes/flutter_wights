@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,21 +10,27 @@ import 'package:flutter_widgets/dialog/dialogPage.dart';
 import 'package:flutter_widgets/heros/heroPage.dart';
 import 'package:flutter_widgets/widgets/container_page.dart';
 import 'package:flutter_widgets/widgets/image_page.dart';
-import 'package:flutter_widgets/widgets/list_page.dart';
 import 'package:flutter_widgets/widgets/login_page.dart';
 import 'package:flutter_widgets/widgets/demo_page.dart';
 import 'package:flutter_widgets/widgets/text_page.dart';
 
 void main() {
-  debugPrint = (String message,{int wrapWidth}){};
-  debugPrint = (String message,{int wrapWidth}) => debugPrintSynchronously(message, wrapWidth: wrapWidth);
-  runApp(MyApp());
+//  debugPrint = (String message, {int wrapWidth}) {};
+//  debugPrint = (String message, {int wrapWidth}) =>
+//      debugPrintSynchronously(message, wrapWidth: wrapWidth);
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
+class App extends StatefulWidget {
+  const App({Key key}) : super(key: key);
+
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-//    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -43,14 +50,70 @@ class MyApp extends StatelessWidget {
         'Chip': (BuildContext context) => ChipPage(),
         'Buttons': (BuildContext context) => ButtonsPage(),
         'CheckBox': (BuildContext context) => CheckBoxPage(),
-
       },
       home: HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    print(state);
+    if (state == AppLifecycleState.resumed) {
+      loadClipboardContents();
+    }
+  }
+
+  loadClipboardContents() async {
+    ClipboardData data = await Clipboard.getData(Clipboard.kTextPlain);
+    print(data.text);
+    if (data != null && data.text.trim() != '') {
+      String _content = data.text.trim();
+      if (RegExp(r'[\uffe5]+.+[\uffe5]').hasMatch(_content)) {
+        showDialog(
+            context: context,
+            barrierDismissible: true,
+            builder: (BuildContext context) {
+              return CupertinoAlertDialog(
+                title: Text('淘口令'),
+                content: Text(_content),
+              );
+            });
+        Clipboard.setData(ClipboardData(text: ''));
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: ListPage(),
+    );
+  }
+}
+
+
+class ListPage extends StatelessWidget {
   final List items = [
     'Container',
     'Text',

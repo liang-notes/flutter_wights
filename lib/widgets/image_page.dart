@@ -3,7 +3,6 @@ import 'package:flutter_widgets/custom/colorful_textField.dart';
 import 'package:flutter_widgets/custom/countdown_button.dart';
 import 'package:flutter_widgets/custom/curve_clipper.dart';
 import 'package:flutter_widgets/custom/expandable_text.dart';
-import 'package:flutter_widgets/custom/expandable_view.dart';
 import 'package:flutter_widgets/custom/graffiti_button.dart';
 
 class ImagePage extends StatelessWidget {
