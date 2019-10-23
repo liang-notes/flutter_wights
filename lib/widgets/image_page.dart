@@ -3,6 +3,7 @@ import 'package:flutter_widgets/custom/countdown_button.dart';
 import 'package:flutter_widgets/custom/curve_clipper.dart';
 import 'package:flutter_widgets/custom/expandable_text.dart';
 import 'package:flutter_widgets/custom/expandable_view.dart';
+import 'package:flutter_widgets/custom/graffiti_button.dart';
 
 class ImagePage extends StatelessWidget {
   @override
@@ -21,7 +22,7 @@ class ImagePage extends StatelessWidget {
           _myIconsAndIconButton(context),
           Text('短文本测试：'),
           Container(
-            padding: EdgeInsets.only(left: 30,right: 30),
+            padding: EdgeInsets.only(left: 30, right: 30),
             color: Colors.yellow,
             child: ExpandableText(
               text: shortText,
@@ -34,7 +35,7 @@ class ImagePage extends StatelessWidget {
           ),
           Text('长文本测试：'),
           Container(
-            padding: EdgeInsets.only(left: 30,right: 30),
+            padding: EdgeInsets.only(left: 30, right: 30),
             color: Colors.yellow,
             child: ExpandableText(
               text: longText,
@@ -42,18 +43,25 @@ class ImagePage extends StatelessWidget {
               style: TextStyle(fontSize: 15, color: Colors.black),
             ),
           ),
-
           ClipPath(
             clipper: CurveClipper(),
             child: Container(
               color: Colors.red,
-              height: 200,
+              height: 100,
             ),
           ),
-
+          Container(
+            padding: EdgeInsets.only(left: 30, right: 30),
+            child: GraffitiButton(
+              activated: true,
+              onTap: () {
+                print('aaa');
+              },
+            ),
+          ),
           CountdownButton(
             countdown: 5,
-            onTapCallBack: (){
+            onTapCallBack: () {
               print('CountdownButton');
             },
             enable: true,

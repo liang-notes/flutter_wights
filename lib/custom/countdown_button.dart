@@ -30,9 +30,11 @@ class _CountdownButtonState extends State<CountdownButton> {
   TextStyle inkWellStyle = _enableStyle;
   String _verifyStr = '获取验证码';
 
-  bool get _enable => widget.enable;
+  bool get enable => widget.enable;
 
-  int get _countdown => widget.countdown;
+  int get countdown => widget.countdown;
+
+  Function get onTapCallBack => widget.onTapCallBack;
 
   @override
   void dispose() {
@@ -50,7 +52,7 @@ class _CountdownButtonState extends State<CountdownButton> {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (_currentSeconds == 0) {
         _cancelTimer();
-        _currentSeconds = _countdown;
+        _currentSeconds = countdown;
         inkWellStyle = _enableStyle;
         setState(() {});
         return;
@@ -74,18 +76,18 @@ class _CountdownButtonState extends State<CountdownButton> {
     inkWellStyle = _disableStyle;
     _verifyStr = '已发送$_currentSeconds' + 's';
     setState(() {});
-    widget.onTapCallBack();
+    onTapCallBack();
   };
 
   @override
   Widget build(BuildContext context) {
-    return _enable
+    return enable
         ? InkWell(
             child: Text(
               ' $_verifyStr ',
               style: inkWellStyle,
             ),
-            onTap: (_currentSeconds == _countdown) ? _onTap() : null,
+            onTap: (_currentSeconds == countdown) ? _onTap() : null,
           )
         : InkWell(
             child: Text(
