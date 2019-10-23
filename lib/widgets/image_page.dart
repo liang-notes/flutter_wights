@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widgets/custom/curve_clipper.dart';
 import 'package:flutter_widgets/custom/expandable_text.dart';
 import 'package:flutter_widgets/custom/expandable_view.dart';
 
@@ -40,6 +41,14 @@ class ImagePage extends StatelessWidget {
               style: TextStyle(fontSize: 15, color: Colors.black),
             ),
           ),
+
+          ClipPath(
+            clipper: CurveClipper(),
+            child: Container(
+              color: Colors.red,
+              height: 200,
+            ),
+          )
 
         ],
       ),
