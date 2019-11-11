@@ -8,6 +8,7 @@ import 'package:flutter_widgets/buttons/checkBoxPage.dart';
 import 'package:flutter_widgets/chips/chipPage.dart';
 import 'package:flutter_widgets/dialog/dialogPage.dart';
 import 'package:flutter_widgets/heros/heroPage.dart';
+import 'package:flutter_widgets/routes/routePage.dart';
 import 'package:flutter_widgets/widgets/container_page.dart';
 import 'package:flutter_widgets/widgets/image_page.dart';
 import 'package:flutter_widgets/widgets/login_page.dart';
@@ -15,9 +16,9 @@ import 'package:flutter_widgets/widgets/demo_page.dart';
 import 'package:flutter_widgets/widgets/text_page.dart';
 
 void main() {
-//  debugPrint = (String message, {int wrapWidth}) {};
-//  debugPrint = (String message, {int wrapWidth}) =>
-//      debugPrintSynchronously(message, wrapWidth: wrapWidth);
+  debugPrint = (String message, {int wrapWidth}) {};
+  debugPrint = (String message, {int wrapWidth}) =>
+      debugPrintSynchronously(message, wrapWidth: wrapWidth);
   runApp(App());
 }
 
@@ -50,6 +51,11 @@ class _AppState extends State<App> {
         'Chip': (BuildContext context) => ChipPage(),
         'Buttons': (BuildContext context) => ButtonsPage(),
         'CheckBox': (BuildContext context) => CheckBoxPage(),
+        'RoutePage': (BuildContext context) => RoutePage(),
+        'Page1': (BuildContext context) => FirstPage(),
+        'Page2': (BuildContext context) => SecondPage(),
+        'Page3': (BuildContext context) => ThreePage(),
+        'Page4': (BuildContext context) => FourPage(),
       },
       home: HomePage(),
     );
@@ -80,7 +86,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     super.didChangeAppLifecycleState(state);
     print(state);
     if (state == AppLifecycleState.resumed) {
-      loadClipboardContents();
+//      loadClipboardContents();
     }
   }
 
@@ -126,7 +132,8 @@ class ListPage extends StatelessWidget {
     'Dialog',
     'Chip',
     'Buttons',
-    'CheckBox'
+    'CheckBox',
+    'RoutePage'
   ];
 
   @override
